@@ -3,6 +3,7 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase/compat/app';
 import { uiConfig } from '../lib/firebase';
 import 'firebase/compat/auth';
+import UploadProfile from './UploadProfile';
 
 /* コンポーネント */
 import TodoItem from './TodoItem';
@@ -55,8 +56,8 @@ function Todo() {
   if (!isSignedIn) {
     return (
       <div>
-        <h1>My App</h1>
-        <p>Please sign-in:</p>
+        <h1>私のアプリ</h1>
+        <p>サインインしてください</p>
         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
       </div>
     );
@@ -64,9 +65,13 @@ function Todo() {
 
   return (
     <div>
-      <h1>My App</h1>
-      <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
-      <a onClick={() => firebase.auth().signOut()}>Sign-out</a>
+      <h1>私のアプリ</h1>
+      <UploadProfile user={firebase.auth().currentUser.displayName}/>
+      <p>こんにちは {firebase.auth().currentUser.displayName}! サインインしました!</p>
+      <button class="button is-danger is-light" onClick={() => firebase.auth().signOut()}>サインアウト</button>
+      <br/>
+      <br/>
+
       <article class="panel is-danger">
         <div className="panel-heading">
           <span class="icon-text">
