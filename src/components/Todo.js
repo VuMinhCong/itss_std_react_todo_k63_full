@@ -6,13 +6,14 @@ import Input from './Input';
 import Filter from './Filter';
 
 /* カスタムフック */
-import useStorage from '../hooks/storage';
+// import useStorage from '../hooks/storage';
+import useFirestore from '../hooks/firestore';
 
 /* ライブラリ */
 import {getKey} from "../lib/util";
 
 function Todo() {
-  const [items, putItems, clearItems] = useStorage();
+  const [items, putItems, clearItems] = useFirestore();
   
   const [filter, setFilter] = React.useState('ALL');
 
